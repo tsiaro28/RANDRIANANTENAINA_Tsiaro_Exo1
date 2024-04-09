@@ -1,0 +1,13 @@
+Voici l'algorithme correspondant au code Python fourni :
+
+1. Importer le module `product` de la bibliothèque `itertools`.
+2. Définir la fonction `fonction_logique(A, B, C)` qui prend trois arguments booléens et retourne le résultat d'une expression logique complexe.
+3. Définir la fonction `table_de_verite(func)` qui génère et affiche la table de vérité pour une fonction logique donnée `func`.
+    - Créer une liste de noms de variables et afficher les en-têtes.
+    - Pour chaque combinaison de valeurs booléennes des variables, évaluer la fonction logique et afficher les résultats dans la table.
+4. Définir la fonction `formes_canoniques(func)` qui trouve les formes canoniques (DNF et CNF) pour une fonction logique donnée `func`.
+    - Parcourir toutes les combinaisons possibles de valeurs booléennes des variables.
+    - Pour chaque combinaison, générer les termes DNF et CNF correspondants et les ajouter à leurs listes respectives, en fonction de la valeur de la fonction logique.
+    - Construire les expressions DNF et CNF à partir des termes obtenus.
+5. Afficher la table de vérité en appelant la fonction `table_de_verite(fonction_logique)`.
+6. Afficher les formes canoniques (FCD et FCC) en appelant la fonction `formes_canoniques(fonction_logique)` et en affichant les expressions DNF et CNF obtenues.
