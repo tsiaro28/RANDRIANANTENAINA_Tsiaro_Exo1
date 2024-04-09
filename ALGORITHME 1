@@ -1,4 +1,3 @@
-Voici l'algorithme de votre code Python :
 
 1. Importer la fonction `product` du module `itertools`.
 2. Définir une fonction `table_verite` prenant en paramètres une fonction logique (`fonction`) et une liste de variables (`variables`).
@@ -15,4 +14,4 @@ Voici l'algorithme de votre code Python :
 7. Afficher la table de vérité pour la fonction logique donnée.
 8. Calculer et afficher les deux formes canoniques de la fonction logique à partir de la table de vérité générée.
 
-Cela résume l'algorithme de votre code Python.
+
