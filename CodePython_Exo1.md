@@ -1,44 +1,65 @@
 from itertools import product
 
-# Définir la fonction logique
-def fonction_logique(A, B, C):
-    return (A and B ) or (not C)
+def table_verite(fonction, variables):
+    # Générer les en-têtes de la table de vérité
+    en_tetes = variables + [fonction]
+    print(" | ".join(en_tetes))
 
-# Générer la table de vérité avec des en-têtes
-def table_de_verite(func):
-    variables = ['A', 'B', 'C', 'f']
-    print('\t'.join(variables))
-    for valeurs in product([True, False], repeat=len(variables)-1):
-        resultat = func(*valeurs)
-        valeurs_str = '\t'.join([str(int(val)) for val in valeurs] + [str(int(resultat))])
-        print(valeurs_str)
+    # Calculer et afficher les lignes de la table de vérité
+    for ligne in product([0, 1], repeat=len(variables)):
+        valeurs = list(ligne)
+        valeurs.append(int(eval(fonction, dict(zip(variables, ligne)))))
+        print(" | ".join(map(str, valeurs)))
 
-# Trouver les formes canoniques
-def formes_canoniques(func):
-    dnf_terms = []
-    cnf_terms = []
-    for valeurs in product([True, False], repeat=3):
-        term_dnf = "(" + "".join([f"{var}" if val else f"~{var}" for i, (val, var) in enumerate(zip(valeurs, ['A', 'B', 'C']))]) + ")"
-        term_cnf = "(" + " +".join([f"~{var}" if val else f"{var}" for i, (val, var) in enumerate(zip(valeurs, ['A', 'B', 'C']))]) + ")"
-        if func(*valeurs):
-            dnf_terms.append(term_dnf)
-        else:
-            cnf_terms.append(term_cnf)
-    
-    dnf_expression = " + ".join(dnf_terms)
-    cnf_expression = "".join(cnf_terms)
-    
-    return dnf_expression, cnf_expression
+def premiere_forme_canonique(variables, table_verite):
+    formule = []
+    for ligne in table_verite:
+        if ligne[-1] == 1:
+            terme = []
+            for i in range(len(variables)):
+                if ligne[i] == 0:
+                    terme.append(variables[i])
+                else:
+                    terme.append(f"not {variables[i]}")
+            formule.append("(" + "".join(terme) + ")")
+    return " + ".join(formule)
 
-# Afficher la table de vérité
-print("Table de vérité:")
-table_de_verite(fonction_logique)
+def deuxieme_forme_canonique(variables, table_verite):
+    formule = []
+    for ligne in table_verite:
+        if ligne[-1] == 0:
+            terme = []
+            for i in range(len(variables)):
+                if ligne[i] == 1:
+                    terme.append(variables[i])
+                else:
+                    terme.append(f"not {variables[i]}")
+            formule.append("(" + " + ".join(terme) + ")")
+    return "".join(formule)
 
-# Afficher les formes canoniques avec les vraies expressions
-print("\nPremière forme canonique (FCD) :")
-dnf_expression, _ = formes_canoniques(fonction_logique)
-print(dnf_expression)
+# Nombre de variables
+nb_variables = int(input("Entrez le nombre de variables : "))
 
-print("\nDeuxième forme canonique (FCC) :")
-_, cnf_expression = formes_canoniques(fonction_logique)
-print(cnf_expression)
+# Variables de la fonction logique
+print("Entrez les noms des variables séparés par des espaces :")
+variables = [input(f"Variable {i+1}: ").strip() for i in range(nb_variables)]
+
+# Fonction logique à tester 
+fonction_logique = input("Entrez la fonction logique : ")
+
+# Affichage de la table de vérité
+print("\nTable de vérité :")
+table_verite(fonction_logique, variables)
+
+# Calcul et affichage des formes canoniques
+table = []
+for ligne in product([0, 1], repeat=len(variables)):
+    valeurs = list(ligne)
+    valeurs.append(int(eval(fonction_logique, dict(zip(variables, ligne)))))
+    table.append(valeurs)
+
+print("\nPremière forme canonique :")
+print(premiere_forme_canonique(variables, table))
+
+print("\nDeuxième forme canonique :")
+print(deuxieme_forme_canonique(variables, table))
