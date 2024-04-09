@@ -1,4 +1,4 @@
-Voici l'algorithme correspondant au code Python fourni :
+Voici l'algorithme correspondant au code Python de l'exo1 :
 
 1. Importer le module `product` de la bibliothèque `itertools`.
 2. Définir la fonction `fonction_logique(A, B, C)` qui prend trois arguments booléens et retourne le résultat d'une expression logique complexe.
