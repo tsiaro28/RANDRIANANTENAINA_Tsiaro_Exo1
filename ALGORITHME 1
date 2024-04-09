@@ -1,13 +1,18 @@
-Voici l'algorithme correspondant au code Python de l'exo1 :
+Voici l'algorithme de votre code Python :
 
-1. Importer le module `product` de la bibliothèque `itertools`.
-2. Définir la fonction `fonction_logique(A, B, C)` qui prend trois arguments booléens et retourne le résultat d'une expression logique complexe.
-3. Définir la fonction `table_de_verite(func)` qui génère et affiche la table de vérité pour une fonction logique donnée `func`.
-    - Créer une liste de noms de variables et afficher les en-têtes.
-    - Pour chaque combinaison de valeurs booléennes des variables, évaluer la fonction logique et afficher les résultats dans la table.
-4. Définir la fonction `formes_canoniques(func)` qui trouve les formes canoniques (DNF et CNF) pour une fonction logique donnée `func`.
-    - Parcourir toutes les combinaisons possibles de valeurs booléennes des variables.
-    - Pour chaque combinaison, générer les termes DNF et CNF correspondants et les ajouter à leurs listes respectives, en fonction de la valeur de la fonction logique.
-    - Construire les expressions DNF et CNF à partir des termes obtenus.
-5. Afficher la table de vérité en appelant la fonction `table_de_verite(fonction_logique)`.
-6. Afficher les formes canoniques (FCD et FCC) en appelant la fonction `formes_canoniques(fonction_logique)` et en affichant les expressions DNF et CNF obtenues.
+1. Importer la fonction `product` du module `itertools`.
+2. Définir une fonction `table_verite` prenant en paramètres une fonction logique (`fonction`) et une liste de variables (`variables`).
+    1. Générer les en-têtes de la table de vérité en combinant les noms des variables avec le nom de la fonction.
+    2. Pour chaque ligne de la table de vérité, calculer les valeurs de la fonction logique pour toutes les combinaisons de valeurs de variables (0 ou 1) et afficher les résultats.
+3. Définir une fonction `premiere_forme_canonique` prenant en paramètres une liste de variables (`variables`) et une table de vérité (`table_verite`).
+    1. Initialiser une liste vide `formule`.
+    2. Pour chaque ligne de la table de vérité, si la dernière valeur est égale à 1 (vrai), créer un terme canonique en fonction des valeurs des variables.
+    3. Ajouter ce terme canonique à la liste `formule`.
+    4. Joindre tous les termes canoniques avec un opérateur OU pour former la première forme canonique.
+4. Définir une fonction `deuxieme_forme_canonique` avec des étapes similaires à la fonction `premiere_forme_canonique`, mais cette fois-ci pour la deuxième forme canonique, en considérant les valeurs égales à 0 (faux) de la table de vérité.
+5. Demander à l'utilisateur d'entrer le nombre de variables et les noms des variables.
+6. Demander à l'utilisateur d'entrer la fonction logique à tester.
+7. Afficher la table de vérité pour la fonction logique donnée.
+8. Calculer et afficher les deux formes canoniques de la fonction logique à partir de la table de vérité générée.
+
+Cela résume l'algorithme de votre code Python.
